@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="span10 offset1">
+            <div class="row">
+                <h3>Create an Invoice</h3>
+            </div>
+
+
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="invoice_date">Invoice Date</label>
+                        <div class="col-md-4">
+                            <input id="invoice_date" name="invoice_date" type="text" placeholder=""
+                                class="form-control input-md" required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="vendor">Vendor</label>
+                        <div class="col-md-4">
+                            <select id="vendor" name="vendor" class="form-control">
+                                <option value="710">Dads Truck Repair</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="truck_num">Truck Number</label>
+                        <div class="col-md-4">
+                            <input id="truck_num" name="truck_num" type="text" placeholder=""
+                                class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="company_select">Company</label>
+                        <div class="col-md-4">
+                            <select id="company_select" name="company_select" class="form-control">
+                                <option value="V0018371">CDST Transport</option>
+                                <option value="V0019106">Ethos Transport</option>
+                                <option value="V0020002">Pathos Transport</option>
+                                <option value="V0020297">K&amp;J Transport</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="total">Total</label>
+                        <div class="col-md-4">
+                            <input id="total" name="total" type="text" placeholder="" class="form-control input-md"
+                                required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit_btn"></label>
+                        <div class="col-md-8">
+                            <button id="submit_btn" name="submit_btn" class="btn btn-success">Submit</button>
+                            <button id="back_btn" name="back_btn" class="btn btn-default">Back</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+
+
+
+            <form class="form-horizontal" action="create.php" method="post">
+                <div class="control-group <?php echo !empty($nameError) ? 'error' : ''; ?>">
+                    <label class="control-label">Name</label>
+                    <div class="controls">
+                        <input name="name" type="text" placeholder="Name"
+                            value="<?php echo !empty($name) ? $name : ''; ?>">
+                        <?php if (!empty($nameError)): ?>
+                        <span class="help-inline"><?php echo $nameError; ?></span>
+                        <?php endif;?>
+                    </div>
+                </div>
+                <div class="control-group <?php echo !empty($emailError) ? 'error' : ''; ?>">
+                    <label class="control-label">Email Address</label>
+                    <div class="controls">
+                        <input name="email" type="text" placeholder="Email Address"
+                            value="<?php echo !empty($email) ? $email : ''; ?>">
+                        <?php if (!empty($emailError)): ?>
+                        <span class="help-inline"><?php echo $emailError; ?></span>
+                        <?php endif;?>
+                    </div>
+                </div>
+                <div class="control-group <?php echo !empty($mobileError) ? 'error' : ''; ?>">
+                    <label class="control-label">Mobile Number</label>
+                    <div class="controls">
+                        <input name="mobile" type="text" placeholder="Mobile Number"
+                            value="<?php echo !empty($mobile) ? $mobile : ''; ?>">
+                        <?php if (!empty($mobileError)): ?>
+                        <span class="help-inline"><?php echo $mobileError; ?></span>
+                        <?php endif;?>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Create</button>
+                    <a class="btn" href="index.php">Back</a>
+                </div>
+            </form>
+        </div>
+
+    </div> <!-- /container -->
+</body>
+
+</html>
