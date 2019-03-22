@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="makeCorsRequest()">Send Request</button>
+    <p id="responseParagraph"></p>
+    <script>
+        function sendRequest() {
+            var http = new XMLHttpRequest();
+            var url = 'https://api.efilecabinetonline.com/EfcProfile/GetProfiles';
+            http.open("POST", url);
+            http.setRequestHeader('Accept', 'application/json');
+            http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // http.setRequestHeader('EfcAuthToken', '706b4554-8b29-4bd7-b948-168a4ae7956e');
+            http.send();
+            http.onreadystatechange = (e) => {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(http.responseText)
+                }
+                else {
+                    console.log("idk wtf is going on");
+                }
+            }
+            // xhttp.open("GET", "filename", true);
+            // xhttp.send();
+        }
+
+        // Create the XHR object.
+        function createCORSRequest(method, url) {
+            var xhr = new XMLHttpRequest();
+            if ("withCredentials" in xhr) {
+                // XHR for Chrome/Firefox/Opera/Safari.
+                xhr.open(method, url, true);
+            } else if (typeof XDomainRequest != "undefined") {
+                // XDomainRequest for IE.
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+            } else {
+                // CORS not supported.
+                xhr = null;
+            }
+            return xhr;
+        }
+
+        // Helper method to parse the title tag from the response.
+        function getTitle(text) {
+            return text.match('<title>(.*)?</title>')[1];
+        }
+
+        // Make the actual CORS request.
+        function makeCorsRequest() {
+            // This is a sample server that supports CORS.
+            var url = 'https://api.efilecabinetonline.com/EfcProfile/GetProfiles';
+
+            var xhr = createCORSRequest('POST', url);
+            if (!xhr) {
+                alert('CORS not supported');
+                return;
+            }
+
+            // Response handlers.
+            xhr.onload = function () {
+                var text = xhr.responseText;
+                var title = getTitle(text);
+                alert('Response from CORS request to ' + url + ': ' + title);
+            };
+
+            xhr.onerror = function () {
+                alert('Woops, there was an error making the request.');
+            };
+
+            
+            xhr.send();
+        }
+
+        function other() {
+
+            var url = 'https://api.efilecabinetonline.com/EfcProfile/GetProfiles';
+            var xhr = createCORSRequest('POST', url);
+            xhr.onload = function () {
+                var text = xhr.responseText;
+                var title = getTitle(text);
+                alert('Response from CORS request to ' + url + ': ' + title);
+            };
+            xhr.setRequestHeader(
+                'EfcAuthToken','706b4554-8b29-4bd7-b948-168a4ae7956e'
+            );
+            xhr.send();
+        }
+
+    </script>
+</body>
+
+</html>
